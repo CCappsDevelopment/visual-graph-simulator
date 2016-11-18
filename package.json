@@ -1,7 +1,7 @@
 {
-  "name": "CCappsDevelopment",
+  "name": "Graph-Simulator",
   "version": "0.1.0",
-  "description": "Personal website showcasing my skills as a software developer.",
+  "description": "Educational program to let users explore the graph data structure",
   "license": "GPL-3.0",
   "main": "server.js",
   "dependencies": {
