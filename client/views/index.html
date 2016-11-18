@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>- Graph Simulator G=(V,E) -</title> 
+        <meta charset="utf-8" />
+        
+        <script src="/angular/angular.js"></script>
+        <script src="/controllers/app.js"></script>
+        <script src="/controllers/canvas.controller.js"></script>
+        <script src="/jquery/jquery.js"></script>
+        <script src="/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
+        
+    </head>
+    
+    <body>
+        <div class="container" ng-controller="CanvasController as canvasCtrl">
+            <h1>Graph Simulator</h1>
+            <form id="graphSpecs">
+                <!- DropDownList: Graph Type ->
+                    <!- Option: Graph, G=(V,E) ->
+                    <!- Option: Tree, T=(V,E) ->
+                    <!- Option: Heap A[1..n] ->
+                <!- CheckBox: Weighted / Unweighted Edges -->
+                <!- CheckBox: Weighted / Unweighted Verticies -->
+                <!- Input: Vertex Size ->
+                <!- ColorChart: Vertex Colour ->
+                <!- Button: Clear Canvas ->
+            </form>
+            
+            <div id="canvas">
+                <canvas id="simCanvas" style="border:1px solid #000;"></canvas>
+            </div>
+        </div>
+    </body>
+</html>
