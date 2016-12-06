@@ -19,27 +19,6 @@
                 yPos: 0, // y-position
                 weight: 0, // vertex weight (if applicable)
                 size: 20 // size of vertex (radius)
-            },
-            {
-                id: 1, 
-                xPos: 500, 
-                yPos: 0, 
-                weight: 0,
-                size: 20 
-            },
-            {
-                id: 2, 
-                xPos: 500,
-                yPos: 500, 
-                weight: 0,
-                size: 20 
-            },
-            {
-                id: 3, 
-                xPos: 0,  
-                yPos: 500, 
-                weight: 0, 
-                size: 20 
             }
         ];
         
@@ -53,17 +32,28 @@
         // Function: addVertex()
         // adds vertex to V(G)
         vm.addVertex = function(event) {
+            vm.x = event.x;
+            vm.y = event.y;
+            vm.offsetX = event.offsetX;
+            vm.offsetY = event.offsetY;
+            vm.xPos = vm.x - vm.offsetX;
+            vm.yPos = vm.y - vm.offsetY;
+            
             vm.id += 1;
-            console.log("click received");
             vm.verticies.push({
                 id: 1,
-                xPos: event.x - 48,
-                yPos: event.y - 129,
+                xPos: vm.offsetX,
+                yPos: vm.offsetY,
                 weight: 0,
                 size: 10
             });
-            console.log("xPos: " + vm.verticies[vm.id].xPos);
-            console.log("yPos: " + vm.verticies[vm.id].yPos);
+            console.log("\nEvent:" + event);
+            console.log("Event x:" + event.x);
+            console.log("Event y:" + event.y);
+            console.log("Offset x:" + event.offsetX);
+            console.log("Offset y:" + event.offsetY);
+            console.log("xPos:" + vm.verticies[vm.id].xPos);
+            console.log("yPos:" + vm.verticies[vm.id].yPos);
             
             vm.update();
         }
@@ -107,8 +97,8 @@
         }
         
         // Canvas dimensions
-        canvas.width = 500;
-        canvas.height = 500;
+        canvas.width = 600;
+        canvas.height = 400;
         context.globalAlpha = 1.0;
         
         // Start canvas drawing
@@ -118,7 +108,6 @@
     
 })();
 
-// TODO: Get exact offset for canvas coordinates.
 // TODO: Refactoring: seperate graph specific functionality into new controller
 // TODO: Add ability to create custom verticies (weight, size, etc.)
 // TODO: Add method to create edges between selected verticies

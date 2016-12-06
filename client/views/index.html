@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
     <head>
-        <title>- Simulator G=(V,E) -</title> 
+        <title>- Graph Simulator G=(V,E) -</title> 
         <meta charset="utf-8" />
         
         <script src="/angular/angular.js"></script>
@@ -30,11 +30,9 @@
                 <!- ColorChart: Vertex Colour ->
                 <!- Button: Clear Canvas ->
             </form>
-            
-            <div id="canvas" class="container">
+            <div class="container">
                 <canvas id="simCanvas" ng-click="canvasCtrl.addVertex($event)"></canvas>
             </div>
-            
         </div>
     </body>
 </html>
