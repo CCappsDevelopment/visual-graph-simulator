@@ -4,7 +4,8 @@
     angular
         .module("app", [
             "canvas",
-            "graph"
+            "graph",
+            "services"
         ]);
 
 })();

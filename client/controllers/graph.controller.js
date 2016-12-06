@@ -1,4 +1,5 @@
 (function() {
+    
     "use strict";
     
     angular
@@ -6,6 +7,9 @@
         .controller("GraphController", GraphController);
     
     function GraphController($scope, $http){ 
+        
+        
+        
         
     }
     

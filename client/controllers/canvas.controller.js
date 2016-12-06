@@ -5,7 +5,9 @@
         .module("canvas", [])
         .controller("CanvasController", CanvasController);
     
-    function CanvasController($scope, $http){ 
+    CanvasController.$inject = ["CanvasService"];
+    
+    function CanvasController(CanvasService){ 
         var canvas = document.getElementById('simCanvas'); // Canvas object
         var context = canvas.getContext('2d'); // Canvas context
         var vm = this; // View Model
@@ -28,6 +30,7 @@
                 // TODO
             }
         ];
+        
         
         // Function: addVertex()
         // adds vertex to V(G)
@@ -62,7 +65,7 @@
         vm.drawVertex = function(v) {
             context.beginPath();
             context.arc(v.xPos, v.yPos, v.size, 0, 2*Math.PI);
-            context.fillStyle = "#ccddff";
+            context.fillStyle = "#CC8193";
             context.fill();
             context.lineWidth = 2;
             context.stroke();  
@@ -88,8 +91,8 @@
         }
         
         // Canvas dimensions
-        canvas.width = 600;
-        canvas.height = 400;
+        canvas.width = 500;
+        canvas.height = 500;
         context.globalAlpha = 1.0;
         
         // Start canvas drawing
