@@ -17,23 +17,42 @@
     </head>
     
     <body>
-        <div class="container" ng-controller="CanvasController as canvasCtrl">
-            
-            <h1>Graph Simulator</h1>
-            <form id="graphSpecs">
-                <!- DropDownList: Graph Type ->
-                    <!- Option: Graph, G=(V,E) ->
-                    <!- Option: Tree, T=(V,E) ->
-                    <!- Option: Heap A[1..n] ->
-                <!- CheckBox: Weighted / Unweighted Edges -->
-                <!- CheckBox: Weighted / Unweighted Verticies -->
-                <!- Input: Vertex Size ->
-                <!- ColorChart: Vertex Colour ->
-                <!- Button: Clear Canvas ->
-            </form>
-            <div class="container">
-                <canvas id="simCanvas" ng-click="canvasCtrl.addVertex($event)"></canvas>
+        <form id="graphSpecs">
+            <!- DropDownList: Graph Type ->
+                <!- Option: Graph, G=(V,E) ->
+                <!- Option: Tree, T=(V,E) ->
+                <!- Option: Heap A[1..n] ->
+            <!- CheckBox: Weighted / Unweighted Edges -->
+            <!- CheckBox: Weighted / Unweighted Verticies -->
+            <!- Input: Vertex Size ->
+            <!- ColorChart: Vertex Colour ->
+            <!- Button: Clear Canvas ->
+        </form>
+
+        <div class="container-full" ng-controller="CanvasController as canvasCtrl">
+            <div class="row">
+                <div class="col-lg-12 text-center v-center">
+                    <h1>Visual Graph Simulator</h1>
+                    <p class="lead">An Educational Tool</p>
+                    <br />
+                    <form class="col-lg-12">
+                        <canvas id="simCanvas" ng-click="canvasCtrl.addVertex($event)"></canvas>
+                    </form>
+                </div>
+            </div> <!-- /row -->
+
+            <div class="row">
+
+                <div class="col-lg-12 text-center v-center" style="font-size:39pt;">
+                  <a href="#"><i class="icon-google-plus"></i></a> <a href="#"><i class="icon-facebook"></i></a>  <a href="#"><i class="icon-twitter"></i></a> <a href="#"><i class="icon-github"></i></a> <a href="#"><i class="icon-pinterest"></i></a>
+                </div>
+
             </div>
-        </div>
+
+            <br><br><br><br><br>
+
+        </div> <!-- /container full -->
+
+    </div>
     </body>
 </html>

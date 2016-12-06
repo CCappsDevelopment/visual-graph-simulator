@@ -88,8 +88,8 @@
         }
         
         // Canvas dimensions
-        canvas.width = 600;
-        canvas.height = 400;
+        canvas.width = 500;
+        canvas.height = 500;
         context.globalAlpha = 1.0;
         
         // Start canvas drawing
