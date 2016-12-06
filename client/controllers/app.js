@@ -3,7 +3,8 @@
     
     angular
         .module("app", [
-            "canvas"
+            "canvas",
+            "graph"
         ]);
 
 })();
