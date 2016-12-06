@@ -32,13 +32,8 @@
         // Function: addVertex()
         // adds vertex to V(G)
         vm.addVertex = function(event) {
-            vm.x = event.x;
-            vm.y = event.y;
             vm.offsetX = event.offsetX;
             vm.offsetY = event.offsetY;
-            vm.xPos = vm.x - vm.offsetX;
-            vm.yPos = vm.y - vm.offsetY;
-            
             vm.id += 1;
             vm.verticies.push({
                 id: 1,
@@ -47,13 +42,9 @@
                 weight: 0,
                 size: 10
             });
-            console.log("\nEvent:" + event);
-            console.log("Event x:" + event.x);
-            console.log("Event y:" + event.y);
-            console.log("Offset x:" + event.offsetX);
-            console.log("Offset y:" + event.offsetY);
-            console.log("xPos:" + vm.verticies[vm.id].xPos);
-            console.log("yPos:" + vm.verticies[vm.id].yPos);
+            //console.log("\nEvent:" + event);
+            //console.log("xPos:" + vm.verticies[vm.id].xPos);
+            //console.log("yPos:" + vm.verticies[vm.id].yPos);
             
             vm.update();
         }
