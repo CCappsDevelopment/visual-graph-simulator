@@ -1,0 +1,11 @@
+body{
+    background-color: azure;
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+#canvas{
+    background: #555;
+    border: 1px, solid, black;
+    max-width: 500px;
+    max-height: 500px;
+}

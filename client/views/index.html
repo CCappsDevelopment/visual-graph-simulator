@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
     <head>
-        <title>- Graph Simulator G=(V,E) -</title> 
+        <title>- Simulator G=(V,E) -</title> 
         <meta charset="utf-8" />
         
         <script src="/angular/angular.js"></script>
@@ -17,6 +17,7 @@
     
     <body>
         <div class="container" ng-controller="CanvasController as canvasCtrl">
+            
             <h1>Graph Simulator</h1>
             <form id="graphSpecs">
                 <!- DropDownList: Graph Type ->
@@ -31,8 +32,9 @@
             </form>
             
             <div id="canvas">
-                <canvas id="simCanvas" style="border:1px solid #000;"></canvas>
+                <canvas id="simCanvas" ng-click="canvasCtrl.addVertex($event)"></canvas>
             </div>
+            
         </div>
     </body>
 </html>
