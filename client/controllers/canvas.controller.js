@@ -1,4 +1,4 @@
-(function(){
+(function() {
     "use strict";
     
     angular
@@ -21,20 +21,34 @@
                 size: 20 // size of vertex (radius)
             },
             {
-                id: 1, // id of vertex
-                xPos: 500, // x-position 
-                yPos: 500, // y-position
-                weight: 0, // vertex weight (if applicable)
-                size: 20 // size of vertex (radius)
+                id: 1, 
+                xPos: 500, 
+                yPos: 0, 
+                weight: 0,
+                size: 20 
+            },
+            {
+                id: 2, 
+                xPos: 500,
+                yPos: 500, 
+                weight: 0,
+                size: 20 
+            },
+            {
+                id: 3, 
+                xPos: 0,  
+                yPos: 500, 
+                weight: 0, 
+                size: 20 
             }
-        ]
+        ];
         
         // Set of edges in graph - E(G)
         vm.edges = [
             {
                 // TODO
             }
-        ]
+        ];
         
         // Function: addVertex()
         // adds vertex to V(G)
@@ -42,11 +56,11 @@
             vm.id += 1;
             console.log("click received");
             vm.verticies.push({
-                    id: 1,
-                    xPos: event.x - 48,
-                    yPos: event.y - 129,
-                    weight: 0,
-                    size: 10
+                id: 1,
+                xPos: event.x - 48,
+                yPos: event.y - 129,
+                weight: 0,
+                size: 10
             });
             console.log("xPos: " + vm.verticies[vm.id].xPos);
             console.log("yPos: " + vm.verticies[vm.id].yPos);
