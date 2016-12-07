@@ -3,9 +3,7 @@
     
     angular
         .module("app", [
-            "canvas",
-            "graph",
-            "services"
+            "smitty.graph",
+            "smitty.services"
         ]);
-
 })();

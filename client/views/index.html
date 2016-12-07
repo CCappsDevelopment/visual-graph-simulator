@@ -7,18 +7,16 @@
         <script src="/angular/angular.js"></script>
         <script src="/controllers/app.js"></script>
         <script src="/controllers/graph.controller.js"></script>
-        <script src="/controllers/canvas.controller.js"></script>
         <script src="/services/canvas.service.js"></script>
         <script src="/jquery/jquery.js"></script>
         <script src="/bootstrap/js/bootstrap.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
-        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
-        
     </head>
     
     <body>
-        <div class="container" ng-controller="CanvasController as canvasCtrl">
+        <div class="container" ng-controller="GraphController as graphCtrl">
             
             <h1>Graph Simulator</h1>
             <form id="graphSpecs">
@@ -33,7 +31,7 @@
                 <!- Button: Clear Canvas ->
             </form>
             <div class="container">
-                <canvas id="simCanvas" ng-click="canvasCtrl.addVertex($event)"></canvas>
+                <canvas id="simCanvas" ng-click="graphCtrl.addVertex($event)"></canvas>
             </div>
         </div>
     </body>
