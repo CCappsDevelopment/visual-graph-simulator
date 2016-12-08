@@ -47,7 +47,7 @@
             vm.offsetX = event.offsetX;
             vm.offsetY = event.offsetY;
             vm.id = nextVertexId;
-            
+        
             vm.vertices.push({
                 id: vm.id,
                 xPos: vm.offsetX,
