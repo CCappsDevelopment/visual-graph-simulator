@@ -16,23 +16,65 @@
     </head>
     
     <body>
+       
+        <form id="graphSpecs">
+            <!- DropDownList: Graph Type ->
+                <!- Option: Graph, G=(V,E) ->
+                <!- Option: Tree, T=(V,E) ->
+                <!- Option: Heap A[1..n] ->
+            <!- CheckBox: Weighted / Unweighted Edges -->
+            <!- CheckBox: Weighted / Unweighted Verticies -->
+            <!- Input: Vertex Size ->
+            <!- ColorChart: Vertex Colour ->
+            <!- Button: Clear Canvas ->
+        </form>
+
         <div class="container" ng-controller="GraphController as graphCtrl">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Visual Graph Simulator</h1>
+                    <p class="lead">An Educational Tool</p>
+                    <br /><br /><br />
+                </div>
+            </div> <!-- /row --> 
             
-            <h1>Graph Simulator</h1>
-            <form id="graphSpecs">
-                <!- DropDownList: Graph Type ->
-                    <!- Option: Graph, G=(V,E) ->
-                    <!- Option: Tree, T=(V,E) ->
-                    <!- Option: Heap A[1..n] ->
-                <!- CheckBox: Weighted / Unweighted Edges -->
-                <!- CheckBox: Weighted / Unweighted Verticies -->
-                <!- Input: Vertex Size ->
-                <!- ColorChart: Vertex Colour ->
-                <!- Button: Clear Canvas ->
-            </form>
-            <div class="container">
-                <canvas id="simCanvas" ng-click="graphCtrl.addVertex($event)"></canvas>
-            </div>
-        </div>
+            <div class="row">   
+                <div class="col-md-12 text-center">
+                    <canvas id="simCanvas" ng-click="graphCtrl.addVertex($event)"></canvas> 
+                </div>
+            </div> <!-- /row --> 
+            
+            <div class="row">   
+                <div class="col-md-12">
+                    <h3>Graph Options:</h3>
+                    <form class="form-inline panel">
+                        <div class="form-group col-md-3">
+                            <label for="graphType">Graph Type:</label>
+                            <select class="custom-select" id="graphType">
+                                <option value="1" selected>Graph G=(V,E)</option>
+                                <option value="2" disabled>Tree T=(V,E)</option>
+                                <option value="3" disabled>Heap A[0..n]</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="weightOp">Weighted Graph: </label>
+                            <label class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="weightOp" id="inlineRadio1" value="0" checked> No
+                            </label>
+                            <label class="form-check-inline">
+                                <input class="form-check-input disabled" type="radio" name="weightOp" id="inlineRadio2" value="1" disabled> Yes
+                            </label>
+                        </div>
+                        
+                        
+                    </form>
+                </div>
+            </div> <!-- /row -->
+            
+
+            <br /><br /><br /><br /><br />
+
+        </div> <!-- /container full -->
+        
     </body>
 </html>

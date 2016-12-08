@@ -3,7 +3,7 @@
     
     angular
         .module("app", [
-            "smitty.graph",
-            "smitty.services"
+            "ccd.graph",
+            "ccd.services"
         ]);
 })();

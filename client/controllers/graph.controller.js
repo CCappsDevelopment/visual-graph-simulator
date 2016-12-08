@@ -2,7 +2,7 @@
     "use strict";
     
     angular
-        .module("smitty.graph", [])
+        .module("ccd.graph", [])
         .controller("GraphController", GraphController);
     
     GraphController.$inject = ["canvasService"];
@@ -20,7 +20,8 @@
                 xPos: 0, // x-position
                 yPos: 0, // y-position
                 weight: 0, // vertex weight (if applicable)
-                size: 20 // size of vertex (radius)
+                size: 0, // size of vertex (radius)
+                text: '' // vertex name/weight
             }
         ];
         
@@ -31,7 +32,16 @@
             }
         ];
         
-        // Function: addVertex()
+        vm.nextChar = function(next){
+            if(next < 26) {
+                return String.fromCharCode('A'.charCodeAt(0) + next);    
+            }
+            else {
+                return "[ ]";
+            }
+            
+        }
+        // Function: addVertex(event)
         // adds vertex to V(G)
         vm.addVertex = function(event) {
             vm.offsetX = event.offsetX;
@@ -43,7 +53,8 @@
                 xPos: vm.offsetX,
                 yPos: vm.offsetY,
                 weight: 0,
-                size: 10
+                size: 20,
+                text: vm.nextChar(nextVertexId)
             });
             nextVertexId++;
             
@@ -69,7 +80,7 @@
         vm.update = function() { 
             for(var i = 0; i < vm.vertices.length; i++) {
                 var v = vm.vertices[i];
-                canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor);
+                canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
                 
                 if(i > 0) {
                     //drawEdge(v1, v2);
