@@ -3,8 +3,7 @@
     
     angular
         .module("app", [
-            "canvas",
-            "graph"
+            "ccd.graph",
+            "ccd.services"
         ]);
-
 })();

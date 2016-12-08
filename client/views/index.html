@@ -7,16 +7,19 @@
         <script src="/angular/angular.js"></script>
         <script src="/controllers/app.js"></script>
         <script src="/controllers/graph.controller.js"></script>
-        <script src="/controllers/canvas.controller.js"></script>
+        <script src="/services/canvas.service.js"></script>
         <script src="/jquery/jquery.js"></script>
         <script src="/bootstrap/js/bootstrap.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
-        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
-        
     </head>
     
     <body>
+<<<<<<< HEAD
+=======
+       
+>>>>>>> controller-seperation
         <form id="graphSpecs">
             <!- DropDownList: Graph Type ->
                 <!- Option: Graph, G=(V,E) ->
@@ -29,6 +32,7 @@
             <!- Button: Clear Canvas ->
         </form>
 
+<<<<<<< HEAD
         <div class="container-full" ng-controller="CanvasController as canvasCtrl">
             <div class="row">
                 <div class="col-lg-12 text-center v-center">
@@ -54,5 +58,54 @@
         </div> <!-- /container full -->
 
     </div>
+=======
+        <div class="container" ng-controller="GraphController as graphCtrl">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Visual Graph Simulator</h1>
+                    <p class="lead">An Educational Tool</p>
+                    <br /><br /><br />
+                </div>
+            </div> <!-- /row --> 
+            
+            <div class="row">   
+                <div class="col-md-12 text-center">
+                    <canvas id="simCanvas" ng-click="graphCtrl.addVertex($event)"></canvas> 
+                </div>
+            </div> <!-- /row --> 
+            
+            <div class="row">   
+                <div class="col-md-12">
+                    <h3>Graph Options:</h3>
+                    <form class="form-inline panel">
+                        <div class="form-group col-md-3">
+                            <label for="graphType">Graph Type:</label>
+                            <select class="custom-select" id="graphType">
+                                <option value="1" selected>Graph G=(V,E)</option>
+                                <option value="2" disabled>Tree T=(V,E)</option>
+                                <option value="3" disabled>Heap A[0..n]</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="weightOp">Weighted Graph: </label>
+                            <label class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="weightOp" id="inlineRadio1" value="0" checked> No
+                            </label>
+                            <label class="form-check-inline">
+                                <input class="form-check-input disabled" type="radio" name="weightOp" id="inlineRadio2" value="1" disabled> Yes
+                            </label>
+                        </div>
+                        
+                        
+                    </form>
+                </div>
+            </div> <!-- /row -->
+            
+
+            <br /><br /><br /><br /><br />
+
+        </div> <!-- /container full -->
+        
+>>>>>>> controller-seperation
     </body>
 </html>
