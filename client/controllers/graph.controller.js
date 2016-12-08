@@ -22,13 +22,13 @@
                 weight: 0, // vertex weight (if applicable)
                 size: 0, // size of vertex (radius)
                 text: '' // vertex name/weight
-            }
+            },
         ];
         
         // Set of edges in graph - E(G)
         vm.edges = [
             {
-                // TODO
+                
             }
         ];
         
@@ -54,7 +54,7 @@
                 yPos: vm.offsetY,
                 weight: 0,
                 size: 20,
-                text: vm.nextChar(nextVertexId)
+                text: vm.nextChar(vm.id)
             });
             nextVertexId++;
             
@@ -69,22 +69,16 @@
             // TODO
         }
         
-        // Function: drawEdge(v1, v2)
-        // draws connecting line (edge) between two vertices in V(G)
-        vm.drawEdge = function(v1, v2){
-            // TODO
-        }
-        
         // Function: update()
         // Updates contents of canvas
         vm.update = function() { 
             for(var i = 0; i < vm.vertices.length; i++) {
                 var v = vm.vertices[i];
                 canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
-                
-                if(i > 0) {
-                    //drawEdge(v1, v2);
-                }
+            }
+            for(var i = 0; i < vm.edges.length; i++) {    
+                var e = vm.edges[i];
+                canvasService.drawEdge(e.v1, e.v2, e.weight);    
             }
         }
         

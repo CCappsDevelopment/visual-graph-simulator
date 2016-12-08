@@ -10,8 +10,8 @@
         var context = canvas.getContext('2d'); // Canvas context
         
         // Canvas dimensions
-        canvas.width = 500;
-        canvas.height = 500;
+        canvas.width = 1000;
+        canvas.height = 400;
         context.globalAlpha = 1.0;
         
         // Function: drawVertex(xPos, yPos, size, vertexColor)
@@ -34,5 +34,12 @@
             context.font = font;
             context.fillText(vName, xPos - (width/2) ,yPos + (height/2));
         }
+        
+        // Function: drawEdge(v1, v2)
+        // draws connecting line (edge) between two vertices in V(G)
+        this.drawEdge = function(v1, v2, weight){
+            
+        }
+        
     }
 })();
