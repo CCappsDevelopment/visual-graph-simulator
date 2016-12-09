@@ -30,27 +30,33 @@
         <!-/form ->
 
         <div class="container" ng-controller="GraphController as graphCtrl">
+            
             <div class="row">
+                
                 <div class="col-md-12 text-center">
                     <h1>Visual Graph Simulator</h1>
                     <p class="lead">An Educational Tool</p>
                     <br /><br /><br />
                 </div>
+                
             </div> <!-- /row --> 
             
             <div class="row">   
+                
                 <div class="col-md-12 text-center">
                     <canvas id="simCanvas" ng-click="graphCtrl.canDraw && graphCtrl.addVertex($event)"></canvas> 
                 </div>
+                
             </div> <!-- /row --> 
             
-            <div class="row">   
+            <div class="row"> 
+                
                 <div class="col-md-8">
-                    
                     <h3>Graph Options:</h3>
                     <form class="form-inline panel">
                         
                         <div class="row">
+                            
                             <div class="form-group col-md-8">
                                 <label for="graphType">Graph Type:</label>
                                 <select class="custom-select" id="graphType">
@@ -69,19 +75,33 @@
                                     <input class="form-check-input disabled" type="radio" name="weightOp" id="inlineRadio2" value="1" disabled> Yes
                                 </label>
                             </div>
+                            
                         </div> <!-- /row --> 
                         <br />
+                        
                         <div class="row">
-                            <button type="button" class="btn btn-primary" ng-click="graphCtrl.canDraw = !graphCtrl.canDraw">Add Vertex</button>
-                            <label ng-show="graphCtrl.canDraw">Adding Vertex</label>
-                            <br/>
-                        </div>
+                            
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary" ng-click="graphCtrl.canDraw = !graphCtrl.canDraw">Add Vertex</button>
+                                <label ng-show="graphCtrl.canDraw">Adding Vertex</label>                          
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary" ng-click="">Add Edge</button>
+                                <label ng-show="false">Adding Edge</label>                        
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary" ng-click="">Clear Graph</button>
+                                <label ng-show="false">Graph Cleared!</label>                        
+                            </div>
+                            
+                        </div> <!-- /row --> 
                         
                     </form>
                 </div>
                 
                 <div class="col-md-4">
-                    
                     <h3>Graph Specs:</h4>
                     <div class="panel">
                         <h4>
@@ -91,8 +111,8 @@
                             <li> }</li>
                           </ul>
                         </h4>
-                        
                         <br />
+                        
                         <h4>
                           <ul class="list-inline">
                             <li>E = { </li>
