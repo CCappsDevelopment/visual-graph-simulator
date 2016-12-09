@@ -11,6 +11,7 @@
         var vm = this; // View Model
         
         var nextVertexId = 0;
+        var nextEdgeId = 0;
         var vertexColor = "#CC8193";
         vm.canDraw = false;
         
@@ -31,14 +32,6 @@
             {
                 //v1: 0,
                 //v2: 0
-            },
-            {
-                v1: 1,
-                v2: 2
-            },
-            {
-                v1: 3,
-                v2: 1
             }
         ];
         
@@ -84,7 +77,25 @@
         // line will be edge (v, u) with weight W
         // adds edge to E(G)
         vm.addEdge = function() {
-            // TODO
+            vm.v1 = vm.vertices[1].id;
+            vm.v2 = vm.vertices[2].id;
+            vm.xPos1 = vm.vertices[1].xPos;
+            vm.yPos1 = vm.vertices[1].yPos;
+            vm.xPos2 = vm.vertices[1].xPos;
+            vm.yPos2 = vm.vertices[1].yPos;
+        
+            vm.id = nextEdgeId;
+            vm.edges.push({
+                id: vm.id,
+                v1: {id: vm.v1, xPos: vm.xPos1, yPos: vm.yPos1},
+                v2: {id: vm.v2, xPos: vm.xPos2, yPos: vm.yPos2}
+            });
+            nextEdgeId++;
+            
+            console.log("Edge " + nextEdgeId + ": ");
+            console.log("v1: " + vm.edges[nextVertexId - 1].v1.id);
+            console.log("v2: " + vm.edges[nextVertexId - 1].v2.id);
+            vm.update();
         }
         
         // Function: update()
@@ -93,10 +104,10 @@
             for(var i = 0; i < vm.vertices.length; i++) {
                 var v = vm.vertices[i];
                 canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
-            }
-            for(var i = 0; i < vm.edges.length; i++) {    
-                var e = vm.edges[i];
-                canvasService.drawEdge(e.v1, e.v2, e.weight);    
+                if(i == 4){
+                    var e = vm.edges[1];
+                    canvasService.drawEdge(e.v1.xPos, e.v1.yPos, e.v2.xPos, e.v2.yPos);
+                }
             }
         }
         

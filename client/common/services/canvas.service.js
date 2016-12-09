@@ -37,8 +37,12 @@
         
         // Function: drawEdge(v1, v2)
         // draws connecting line (edge) between two vertices in V(G)
-        this.drawEdge = function(v1, v2, weight){
-            
+        this.drawEdge = function(xPos1, yPos1, xPos2, yPos2){
+            context.beginPath();
+            context.moveTo(xPos1, yPos1);
+            context.lineTo(xPos2, yPos2);
+            context.strokeStyle = "black";
+            context.stroke();
         }
         
     }

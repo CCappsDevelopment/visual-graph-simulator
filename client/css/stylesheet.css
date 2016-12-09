@@ -3,8 +3,14 @@ body {
     padding-top: 20px;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, p, .sub-title {
     color: aliceblue;
+}
+
+hr {
+    border-color: #666;
+    border: 2px solid;
+    width: 80%;
 }
 
 #simCanvas {
@@ -25,5 +31,24 @@ h1, h2, h3, p {
 
 .btn-primary {
     margin-right: 5px;
-    
+}
+
+.social-icons a {
+    display: inline-block;
+    border: 1px solid #666;
+    background: aliceblue;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    padding-top: 12px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    margin-right: 8px;
+    float: left;
 }

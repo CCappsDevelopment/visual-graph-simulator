@@ -13,7 +13,7 @@
     "mongoose": "^4.6.0"
   },
   "devDependencies": {
-      
+    "font-awesome": "^4.7.0"
   },
   "scripts": {
     "start": "node server/server"
