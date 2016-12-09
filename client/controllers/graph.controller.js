@@ -81,8 +81,8 @@
             vm.v2 = vm.vertices[2].id;
             vm.xPos1 = vm.vertices[1].xPos;
             vm.yPos1 = vm.vertices[1].yPos;
-            vm.xPos2 = vm.vertices[1].xPos;
-            vm.yPos2 = vm.vertices[1].yPos;
+            vm.xPos2 = vm.vertices[2].xPos;
+            vm.yPos2 = vm.vertices[2].yPos;
         
             vm.id = nextEdgeId;
             vm.edges.push({
@@ -104,10 +104,10 @@
             for(var i = 0; i < vm.vertices.length; i++) {
                 var v = vm.vertices[i];
                 canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
-                if(i == 4){
-                    var e = vm.edges[1];
-                    canvasService.drawEdge(e.v1.xPos, e.v1.yPos, e.v2.xPos, e.v2.yPos);
-                }
+            }
+            if(vm.edges.length > 1){
+                var e = vm.edges[1];
+                canvasService.drawEdge(e.v1.xPos, e.v1.yPos, e.v2.xPos, e.v2.yPos);
             }
         }
         
