@@ -118,7 +118,7 @@
                 }
             }
             
-            if(selectedVertices.length >= 2) {
+            if(selectedVertices.length === 2) {
                 vm.isSelecting = false;
                 addEdge();
             }
