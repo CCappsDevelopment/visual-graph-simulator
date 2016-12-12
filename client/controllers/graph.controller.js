@@ -44,6 +44,7 @@
         // toggles the isSelecting switch
         vm.toggleSelecting = function() {
             selectedVertices = [];
+            update();
             vm.isSelecting = !vm.isSelecting;
         };
         
