@@ -21,6 +21,7 @@
         var nextVertexId = 0;
         var nextEdgeId = 0;
         var vertexColor = "#CC8193";
+        var selectedColor = "#00FFFF";
         var selectedVertices = [];
         
         // Function: click(event)
@@ -94,6 +95,10 @@
             vm.vertices.forEach(function(v) {
                 canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
             });
+            
+            selectedVertices.forEach(function(v) {
+                canvasService.drawVertex(v.xPos, v.yPos, v.size, selectedColor, v.text);
+            });
         };
         
         // Function: selectVertex(event)
@@ -106,6 +111,7 @@
                 var v = vm.vertices[i];
                 if(isWithinVertex(mouseX, mouseY, v.xPos, v.yPos, v.size)) {
                     selectedVertices.push(vm.vertices[i]);
+                    update();
                     break;
                 }
             }
