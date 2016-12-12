@@ -87,26 +87,28 @@
         // Function: update()
         // updates contents of canvas
         function update() {
-            vm.vertices.forEach(function(v) {
-                canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
-            });
-            
             vm.edges.forEach(function(e) {
                 canvasService.drawEdge(e.v1.xPos, e.v1.yPos, e.v2.xPos, e.v2.yPos);
+            });
+            
+            vm.vertices.forEach(function(v) {
+                canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
             });
         };
         
         // Function: selectVertex(event)
         // selects a vertex to draw an edge from/to
         function selectVertex(event) {
-            var xPos = event.offsetX;
-            var yPos = event.offsetY;
+            var mouseX = event.offsetX;
+            var mouseY = event.offsetY;
             
-            vm.vertices.forEach(function(vertex) {
-                if(isWithinVertex(xPos, yPos, vertex)) {
-                    selectedVertices.push(vertex);
+            for(var i = 0; i < vm.vertices.length; i++) {
+                var v = vm.vertices[i];
+                if(isWithinVertex(mouseX, mouseY, v.xPos, v.yPos, v.size)) {
+                    selectedVertices.push(vm.vertices[i]);
+                    break;
                 }
-            });
+            }
             
             if(selectedVertices.length >= 2) {
                 vm.isSelecting = false;
@@ -116,11 +118,8 @@
         
         // Function: isWithinVertex(mouseX, mouseY, vertex)
         // checks if mouse coords were inside a vertex
-        function isWithinVertex(mouseX, mouseY, vertex) {
-            return (mouseX >= vertex.xPos - vertex.size &&
-                    mouseX <= vertex.xPos + vertex.size &&
-                    mouseY >= vertex.yPos - vertex.size &&
-                    mouseY <= vertex.yPos + vertex.size);
+        function isWithinVertex(mouseX, mouseY, vX, vY, vSize) {
+            return Math.sqrt(Math.pow(mouseX - vX, 2) + Math.pow(mouseY - vY, 2)) < vSize;
         }
         
         // Function: nextChar(currentVertex)
