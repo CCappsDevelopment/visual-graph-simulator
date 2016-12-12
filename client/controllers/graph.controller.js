@@ -43,6 +43,7 @@
         // Function: toggleSelecting()
         // toggles the isSelecting switch
         vm.toggleSelecting = function() {
+            selectedVertices = [];
             vm.isSelecting = !vm.isSelecting;
         };
         
