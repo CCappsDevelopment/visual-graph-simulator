@@ -16,7 +16,7 @@
     "font-awesome": "^4.7.0"
   },
   "scripts": {
-    "start": "node server/server"
+    "start": "node server/server.js"
   },
   "author": "Cory Capps"
 }

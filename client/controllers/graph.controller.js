@@ -5,12 +5,14 @@
         .module("ccd.graph", [])
         .controller("GraphController", GraphController);
     
-    GraphController.$inject = ["canvasService"];
+    GraphController.$inject = ["$timeout", "canvasService"];
     
-    function GraphController(canvasService) {
+    function GraphController($timeout, canvasService) {
         var vm = this; // View Model
         vm.isDrawing = false;
         vm.isSelecting = false;
+        vm.isWeighted = false;
+        vm.clearMessage = false;
         
         // Set of vertices in graph - V(G)
         vm.vertices = [];
@@ -18,8 +20,8 @@
         // Set of edges in graph - E(G)
         vm.edges = [];
         
-        var nextVertexId = 0;
-        var nextEdgeId = 0;
+        var nextVertexId = 0; // Specifies id for next vertex added to V(G)
+        var nextEdgeId = 0; // Specifies id for next edge added to E(G)
         var vertexColor = "#CC8193";
         var selectedColor = "#00FFFF";
         var selectedVertices = [];
@@ -46,6 +48,22 @@
             selectedVertices = [];
             update();
             vm.isSelecting = !vm.isSelecting;
+        };
+        
+        // Function: clearGraph() 
+        // clears the canvas as well as V(G) and E(G)
+        // displays clear message for brief period
+        vm.clearGraph = function() {  
+            nextVertexId = 0;
+            nextEdgeId = 0;
+            vm.vertices = [];
+            vm.edges = [];
+            vm.clearMessage = true;
+    
+            $timeout(function() { vm.clearMessage = false; }, 2000);
+            canvasService.clear();
+            
+            update();  
         };
         
         // Function: addVertex(event)
@@ -75,10 +93,19 @@
         // line will be edge (v, u) with weight W
         // adds edge to E(G)
         function addEdge() {
+            var weight = 0;
+            
+            if(vm.isWeighted) {
+                weight = parseInt(prompt("Enter Edge Weight: ", "0"), 10);
+            }
+            else {
+                weight = -1;
+            }
             vm.edges.push({
                 id: nextEdgeId,
                 v1: selectedVertices[0],
-                v2: selectedVertices[1]
+                v2: selectedVertices[1],
+                weight: weight
             });
             
             selectedVertices = [];
@@ -91,7 +118,7 @@
         // updates contents of canvas
         function update() {
             vm.edges.forEach(function(e) {
-                canvasService.drawEdge(e.v1.xPos, e.v1.yPos, e.v2.xPos, e.v2.yPos);
+                canvasService.drawEdge(e.v1.xPos, e.v1.yPos, e.v2.xPos, e.v2.yPos, e.weight);
             });
             
             vm.vertices.forEach(function(v) {
@@ -101,6 +128,7 @@
             selectedVertices.forEach(function(v) {
                 canvasService.drawVertex(v.xPos, v.yPos, v.size, selectedColor, v.text);
             });
+            
         };
         
         // Function: selectVertex(event)

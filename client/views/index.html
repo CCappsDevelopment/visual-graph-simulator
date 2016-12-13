@@ -69,12 +69,11 @@
 
                             <div class="form-group col-md-4">
                                 <label for="weightOp">Weighted Graph: </label>
-                                <label class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="weightOp" id="inlineRadio1" value="0" checked> No
-                                </label>
-                                <label class="form-check-inline">
-                                    <input class="form-check-input disabled" type="radio" name="weightOp" id="inlineRadio2" value="1" disabled> Yes
-                                </label>
+                                
+                                <input class="form-check-input" type="radio" name="weightOp" ng-model="graphCtrl.isWeighted" ng-click="graphCtrl.clearGraph()" value="0" checked /> No
+                              
+                               
+                                <input class="form-check-input" type="radio" name="weightOp" ng-model="graphCtrl.isWeighted" ng-click="graphCtrl.clearGraph()" value="1" /> Yes
                             </div>
                             
                         </div> <!-- /row --> 
@@ -93,8 +92,8 @@
                             </div>
                             
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-primary" ng-click="" disabled>Clear Graph</button>
-                                <label ng-show="false">Graph Cleared!</label>                        
+                                <button type="button" class="btn btn-primary" ng-click="graphCtrl.clearGraph()">Clear Graph</button>
+                                <label ng-show="graphCtrl.clearMessage">Graph Cleared!</label>                        
                             </div>
                             
                         </div> <!-- /row --> 
@@ -131,14 +130,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="info text-center">
-                        <h4 class="sub-title">Get Connected</h4>
+                        <h4 class="sub-title">Contact Info</h4>
                         <ul class="social-icons list-inline">
                             <li><a href="https://www.linkedin.com/in/cory-capps-16b965122"><i class="fa fa-linkedin"></i></a></li>   
                             <li class="last"><a href="mailto:ccappsdev@gmail.com"><i class="fa fa-envelope"></i></a></li>     
                             <li><a href="https://twitter.com/ccapps_dev" target="_blank"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="https://www.facebook.com/JSmitt999" target="_blank"><i class="fa fa-facebook"></i></a></li>
                         </ul>
-                    </div><!--//info-->
+                    </div> <!-- /info -->
                 </div>
             
             </div>
