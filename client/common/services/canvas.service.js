@@ -21,7 +21,6 @@
             context.fillStyle = vertexColor;
             context.beginPath();
             context.arc(xPos, yPos, size, 0, 2 * Math.PI);
-            context.closePath();
             context.fill();
             context.lineWidth = 2;
             context.stroke();
@@ -33,17 +32,23 @@
             var font = "bold 20px arial";
             context.font = font;
             context.fillText(vName, xPos - (width/2) ,yPos + (height/2));
-        }
+        };
         
         // Function: drawEdge(v1, v2)
         // draws connecting line (edge) between two vertices in V(G)
         this.drawEdge = function(xPos1, yPos1, xPos2, yPos2){
             context.beginPath();
-            context.moveTo(xPos1, yPos1);
-            context.lineTo(xPos2, yPos2);
+            
+            if(xPos1 === xPos2 && yPos1 === yPos2) {
+                var selfEdgeRadius = 30;
+                context.arc(xPos1 - selfEdgeRadius, yPos1, selfEdgeRadius, 0, 2 * Math.PI);
+            } else {
+                context.moveTo(xPos1, yPos1);
+                context.lineTo(xPos2, yPos2);
+            }
+            
             context.strokeStyle = "black";
             context.stroke();
-        }
-        
+        };
     }
 })();

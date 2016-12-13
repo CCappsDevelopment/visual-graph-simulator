@@ -9,36 +9,131 @@
     
     function GraphController(canvasService) {
         var vm = this; // View Model
+        vm.isDrawing = false;
+        vm.isSelecting = false;
+        
+        // Set of vertices in graph - V(G)
+        vm.vertices = [];
+        
+        // Set of edges in graph - E(G)
+        vm.edges = [];
         
         var nextVertexId = 0;
         var nextEdgeId = 0;
         var vertexColor = "#CC8193";
-        vm.canDraw = false;
+        var selectedColor = "#00FFFF";
+        var selectedVertices = [];
         
-        // Set of vertices in graph - V(G)
-        vm.vertices = [
-            {
-                //id: 0, // id of vertex
-                //xPos: 0, // x-position
-                //yPos: 0, // y-position
-                //weight: 0, // vertex weight (if applicable)
-                //size: 0, // size of vertex (radius)
-                //text: '' // vertex name/weight
-            },
-        ];
-        
-        // Set of edges in graph - E(G)
-        vm.edges = [
-            {
-                //v1: 0,
-                //v2: 0
+        // Function: click(event)
+        // handles click events inside the canvas
+        vm.click = function(event) {
+            if(vm.isDrawing) {
+                addVertex(event);
+            } else if(vm.isSelecting) {
+                selectVertex(event);
             }
-        ];
+        };
+        
+        // Function: toggleDrawing()
+        // toggles the isDrawing switch
+        vm.toggleDrawing = function() {
+            vm.isDrawing = !vm.isDrawing;
+        };
+        
+        // Function: toggleSelecting()
+        // toggles the isSelecting switch
+        vm.toggleSelecting = function() {
+            selectedVertices = [];
+            update();
+            vm.isSelecting = !vm.isSelecting;
+        };
+        
+        // Function: addVertex(event)
+        // adds vertex to V(G)
+        function addVertex(event) {
+            var offsetX = event.offsetX;
+            var offsetY = event.offsetY;
+            var id = nextVertexId;
+        
+            vm.vertices.push({
+                id: id,
+                xPos: offsetX,
+                yPos: offsetY,
+                weight: 0,
+                size: 20,
+                text: nextChar(id)
+            });
+            
+            nextVertexId++;
+            vm.isDrawing = false;
+            
+            update();
+        };
+        
+        // Function: addEdge(v, u, weight)
+        // draws a connecting line from vertex v to vertex u
+        // line will be edge (v, u) with weight W
+        // adds edge to E(G)
+        function addEdge() {
+            vm.edges.push({
+                id: nextEdgeId,
+                v1: selectedVertices[0],
+                v2: selectedVertices[1]
+            });
+            
+            selectedVertices = [];
+            nextEdgeId++;
+            
+            update();
+        };
+        
+        // Function: update()
+        // updates contents of canvas
+        function update() {
+            vm.edges.forEach(function(e) {
+                canvasService.drawEdge(e.v1.xPos, e.v1.yPos, e.v2.xPos, e.v2.yPos);
+            });
+            
+            vm.vertices.forEach(function(v) {
+                canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
+            });
+            
+            selectedVertices.forEach(function(v) {
+                canvasService.drawVertex(v.xPos, v.yPos, v.size, selectedColor, v.text);
+            });
+        };
+        
+        // Function: selectVertex(event)
+        // selects a vertex to draw an edge from/to
+        function selectVertex(event) {
+            var mouseX = event.offsetX;
+            var mouseY = event.offsetY;
+            
+            for(var i = 0; i < vm.vertices.length; i++) {
+                var v = vm.vertices[i];
+                if(isWithinVertex(mouseX, mouseY, v.xPos, v.yPos, v.size)) {
+                    selectedVertices.push(vm.vertices[i]);
+                    update();
+                    break;
+                }
+            }
+            
+            if(selectedVertices.length === 2) {
+                vm.isSelecting = false;
+                addEdge();
+            }
+        }
+        
+        // Function: isWithinVertex(mouseX, mouseY, vertex)
+        // checks if mouse coords were inside a vertex
+        function isWithinVertex(mouseX, mouseY, vX, vY, vSize) {
+            return Math.sqrt(Math.pow(mouseX - vX, 2) + Math.pow(mouseY - vY, 2)) < vSize;
+        }
         
         // Function: nextChar(currentVertex)
         // Increments through alphabet to add corresponding
         // letter on newly inserted verticies
-        vm.nextChar = function(currentVertex){
+        function nextChar(currentVertex) {
             if(currentVertex < 26) {
                 return String.fromCharCode('A'.charCodeAt(0) + currentVertex);    
             }
@@ -46,74 +141,7 @@
                 return "[ ]";
             } 
         }
-        
-        // Function: addVertex(event)
-        // adds vertex to V(G)
-        vm.addVertex = function(event) {
-            vm.offsetX = event.offsetX;
-            vm.offsetY = event.offsetY;
-            vm.id = nextVertexId;
-        
-            vm.vertices.push({
-                id: vm.id,
-                xPos: vm.offsetX,
-                yPos: vm.offsetY,
-                weight: 0,
-                size: 20,
-                text: vm.nextChar(vm.id)
-            });
-            nextVertexId++;
-            
-            console.log("Vertex " + vm.nextChar(nextVertexId - 1) + ": ");
-            console.log("\txPos: " + vm.vertices[nextVertexId].xPos);
-            console.log("\tyPos: " + vm.vertices[nextVertexId].yPos);
-            
-            vm.canDraw = false;
-            vm.update();
-        }
-        
-        // Function: addEdge(v, u, weight)
-        // draws a connecting line from vertex v to vertex u
-        // line will be edge (v, u) with weight W
-        // adds edge to E(G)
-        vm.addEdge = function() {
-            vm.v1 = vm.vertices[1].id;
-            vm.v2 = vm.vertices[2].id;
-            vm.xPos1 = vm.vertices[1].xPos;
-            vm.yPos1 = vm.vertices[1].yPos;
-            vm.xPos2 = vm.vertices[2].xPos;
-            vm.yPos2 = vm.vertices[2].yPos;
-        
-            vm.id = nextEdgeId;
-            vm.edges.push({
-                id: vm.id,
-                v1: {id: vm.v1, xPos: vm.xPos1, yPos: vm.yPos1},
-                v2: {id: vm.v2, xPos: vm.xPos2, yPos: vm.yPos2}
-            });
-            nextEdgeId++;
-            
-            console.log("Edge " + nextEdgeId + ": ");
-            console.log("v1: " + vm.edges[nextVertexId - 1].v1.id);
-            console.log("v2: " + vm.edges[nextVertexId - 1].v2.id);
-            vm.update();
-        }
-        
-        // Function: update()
-        // Updates contents of canvas
-        vm.update = function() { 
-            for(var i = 0; i < vm.vertices.length; i++) {
-                var v = vm.vertices[i];
-                canvasService.drawVertex(v.xPos, v.yPos, v.size, vertexColor, v.text);
-            }
-            if(vm.edges.length > 1){
-                var e = vm.edges[1];
-                canvasService.drawEdge(e.v1.xPos, e.v1.yPos, e.v2.xPos, e.v2.yPos);
-            }
-        }
-        
-        vm.update();
     }
 })();
 
 // TODO: Add ability to create custom vertices (weight, size, etc.)
-// TODO: Add method to create edges between selected vertices
