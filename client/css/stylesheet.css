@@ -1,5 +1,5 @@
 body {
-    background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/08/Free-Chalkboard-Backgrounds.jpg');
+    background-image: url("http://www.pixelstalk.net/wp-content/uploads/2016/08/Free-Chalkboard-Backgrounds.jpg");
     padding-top: 20px;
 }
 
@@ -51,4 +51,9 @@ hr {
     background-clip: padding-box;
     margin-right: 8px;
     float: left;
+}
+
+.footer {
+    text-align: right;
+    color: aliceblue;
 }

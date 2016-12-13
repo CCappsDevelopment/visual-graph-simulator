@@ -15,6 +15,7 @@ app.use("/services", express.static(path.join(__dirname, "../client/common/servi
 app.use("/jquery", express.static(path.join(__dirname, "../node_modules/jquery/dist")));
 app.use("/bootstrap", express.static(path.join(__dirname, "../node_modules/bootstrap/dist")));
 app.use("/font-awesome", express.static(__dirname + "/../node_modules/font-awesome"));
+app.use("/img", express.static(path.join(__dirname, "../client/img")));
 app.use("/css", express.static(path.join(__dirname, "../client/css")));
 app.use(express.static(path.join(__dirname, "../client/views")));
 app.use(bodyParser.json());

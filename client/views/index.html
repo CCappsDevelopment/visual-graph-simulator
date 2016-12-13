@@ -17,18 +17,6 @@
     </head>
     
     <body>
-       
-        <!- form id="graphSpecs" ->
-            <!- DropDownList: Graph Type ->
-                <!- Option: Graph, G=(V,E) ->
-                <!- Option: Tree, T=(V,E) ->
-                <!- Option: Heap A[1..n] ->
-            <!- CheckBox: Weighted / Unweighted Edges -->
-            <!- CheckBox: Weighted / Unweighted Verticies -->
-            <!- Input: Vertex Size ->
-            <!- ColorChart: Vertex Colour ->
-            <!- Button: Clear Canvas ->
-        <!-/form ->
 
         <div class="container" ng-controller="GraphController as graphCtrl">
             
@@ -69,11 +57,11 @@
 
                             <div class="form-group col-md-4">
                                 <label for="weightOp">Weighted Graph: </label>
-                                
-                                <input class="form-check-input" type="radio" name="weightOp" ng-model="graphCtrl.isWeighted" ng-click="graphCtrl.clearGraph()" value="0" checked /> No
-                              
-                               
-                                <input class="form-check-input" type="radio" name="weightOp" ng-model="graphCtrl.isWeighted" ng-click="graphCtrl.clearGraph()" value="1" /> Yes
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input class="form-check-input" type="checkbox" name="weightOp" ng-model="graphCtrl.isWeighted" ng-click="graphCtrl.clearGraph()" />
+                                <label for="weightOp" ng-show="!graphCtrl.isWeighted">No</label>
+                                <label for="weightOp" ng-show="graphCtrl.isWeighted">Yes</label>
+
                             </div>
                             
                         </div> <!-- /row --> 
@@ -130,7 +118,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="info text-center">
-                        <h4 class="sub-title">Contact Info</h4>
+                        <h4 class="sub-title">Contact Me</h4>
                         <ul class="social-icons list-inline">
                             <li><a href="https://www.linkedin.com/in/cory-capps-16b965122"><i class="fa fa-linkedin"></i></a></li>   
                             <li class="last"><a href="mailto:ccappsdev@gmail.com"><i class="fa fa-envelope"></i></a></li>     
@@ -138,6 +126,7 @@
                             <li><a href="https://www.facebook.com/JSmitt999" target="_blank"><i class="fa fa-facebook"></i></a></li>
                         </ul>
                     </div> <!-- /info -->
+                    <footer class="footer">&copy; 2017 - CCappsDev</footer>
                 </div>
             
             </div>
