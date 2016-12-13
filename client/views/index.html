@@ -45,7 +45,7 @@
             <div class="row">   
                 
                 <div class="col-md-12 text-center">
-                    <canvas id="simCanvas" ng-click="graphCtrl.canDraw && graphCtrl.addVertex($event)"></canvas> 
+                    <canvas id="simCanvas" ng-click="graphCtrl.click($event)"></canvas>
                 </div>
                 
             </div> <!-- /row --> 
@@ -83,13 +83,13 @@
                         <div class="row">
                             
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-primary" ng-click="graphCtrl.canDraw = !graphCtrl.canDraw">Add Vertex</button>
-                                <label ng-show="graphCtrl.canDraw">Adding Vertex</label>                          
+                                <button type="button" class="btn btn-primary" ng-click="graphCtrl.toggleDrawing()">Add Vertex</button>
+                                <label ng-show="graphCtrl.isDrawing">Click to add...</label>                          
                             </div>
                             
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-primary" ng-click="graphCtrl.addEdge()">Add Edge</button>
-                                <label ng-show="false">Adding Edge</label>                        
+                                <button type="button" class="btn btn-primary" ng-click="graphCtrl.toggleSelecting()">Add Edge</button>
+                                <label ng-show="graphCtrl.isSelecting">Select 2 vertices...</label>                        
                             </div>
                             
                             <div class="col-md-4">
@@ -108,7 +108,7 @@
                         <h4>
                           <ul class="list-inline">
                             <li>V = { </li>
-                            <li ng-repeat="v in graphCtrl.vertices.slice(1, graphCtrl.vertices.length)">{{v.id}}, </li>
+                            <li ng-repeat="v in graphCtrl.vertices">{{v.id}}, </li>
                             <li> }</li>
                           </ul>
                         </h4>
@@ -117,7 +117,7 @@
                         <h4>
                           <ul class="list-inline">
                             <li>E = { </li>
-                            <li ng-repeat="e in graphCtrl.edges.slice(1, graphCtrl.edges.length)">({{e.v1.id}}, {{e.v2.id}}), </li>
+                            <li ng-repeat="e in graphCtrl.edges">({{e.v1.id}}, {{e.v2.id}}), </li>
                             <li> }</li>
                           </ul>
                         </h4>                       
