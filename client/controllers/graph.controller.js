@@ -96,7 +96,7 @@
             var weight = 0;
             
             if(vm.isWeighted) {
-                weight = parseInt(prompt("Enter Edge Weight: ", "0"), 10);
+                weight = parseInt(prompt("Enter (Positive) Edge Weight: ", "0"), 10);
             }
             else {
                 weight = -1;
