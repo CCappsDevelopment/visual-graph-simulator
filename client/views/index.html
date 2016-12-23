@@ -8,6 +8,7 @@
         <script src="/controllers/app.js"></script>
         <script src="/controllers/graph.controller.js"></script>
         <script src="/services/canvas.service.js"></script>
+        <script src="/services/prim.service.js"></script>
         <script src="/jquery/jquery.js"></script>
         <script src="/bootstrap/js/bootstrap.js"></script>
         
@@ -19,6 +20,8 @@
     <body>
 
         <div class="container" ng-controller="GraphController as graphCtrl">
+            
+            <!-- a href="test.html" target="_blank" class="link">test place</a -->
             
             <div class="row">
                 
@@ -58,7 +61,7 @@
                             <div class="form-group col-md-4">
                                 <label for="weightOp">Weighted Graph: </label>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input class="form-check-input" type="checkbox" name="weightOp" ng-model="graphCtrl.isWeighted" ng-click="graphCtrl.clearGraph()" />
+                                <input class="form-check-input" type="checkbox" name="weightOp" ng-click="graphCtrl.toggleWeighted()" />
                                 <label for="weightOp" ng-show="!graphCtrl.isWeighted">No</label>
                                 <label for="weightOp" ng-show="graphCtrl.isWeighted">Yes</label>
 
@@ -84,7 +87,17 @@
                                 <label ng-show="graphCtrl.clearMessage">Graph Cleared!</label>                        
                             </div>
                             
-                        </div> <!-- /row --> 
+                        </div> <!-- /row -->
+                        <br />
+                        
+                        <div class="row">
+                            
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary" ng-click="graphCtrl.toggleLock()">Lock Graph</button>
+                                <label ng-show="graphCtrl.isLocked">Graph Locked!</label>                          
+                            </div>
+                            
+                        </div> <!-- /row -->                        
                         
                     </form>
                 </div>
@@ -107,12 +120,35 @@
                             <li ng-repeat="e in graphCtrl.edges">({{e.v1.id}}, {{e.v2.id}}), </li>
                             <li> }</li>
                           </ul>
-                        </h4>                       
+                        </h4> 
+                        <br />
+                        
+                        <h4 ng-show="graphCtrl.isPrimRunning">
+                          <ul class="list-inline">
+                            <li>MWST = { </li>
+                            <li ng-repeat="v in graphCtrl.MWST.vertices">{{v.id}}, </li>
+                            <li> }</li>
+                          </ul>
+                        </h4> 
                     </div>
                 </div>
                 
             </div> <!-- /row -->
             
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Algorithms:</h3>
+                    <div class="panel">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-warning" id="prim-button" ng-click="graphCtrl.runPrim()">Run Prim's Algorithm</button>
+                                <label for="prim-button" ng-show="graphCtrl.lockWarningLabel">( Graph Not Locked! )</label>
+                                <label for="prim-button" ng-show="graphCtrl.weightWarningLabel">( Graph Not Weighted! )</label>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div> <!-- /row -->
         
             <br /><br /><hr />
             <div class="row">

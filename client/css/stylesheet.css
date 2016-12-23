@@ -18,6 +18,10 @@ hr {
     outline: 4px solid #222;
 }
 
+.container {
+    width: 80%;
+}
+
 .row {
     padding-bottom: 10px; 
 }

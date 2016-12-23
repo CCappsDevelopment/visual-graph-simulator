@@ -2,7 +2,7 @@
     "use strict";
     
     angular
-        .module("ccd.services", [])
+        .module("ccd.service.canvas", [])
         .service("canvasService", canvasService);
     
     function canvasService() {
@@ -10,8 +10,8 @@
         var context = canvas.getContext('2d'); // Canvas context
         
         // Canvas dimensions
-        canvas.width = 1000;
-        canvas.height = 400;
+        canvas.width = 1300;
+        canvas.height = 600;
         context.globalAlpha = 1.0;
         
         // Function: drawVertex(xPos, yPos, size, vertexColor)
@@ -34,27 +34,29 @@
             context.fillText(vName, xPos - (width / 2), yPos + (height / 2));
         };
         
-        // Function: drawEdge(v1, v2)
+        // Function: drawEdge(xPos1, yPos1, xPos2, yPos2, weight, color)
         // draws connecting line (edge) between two vertices in V(G)
-        this.drawEdge = function(xPos1, yPos1, xPos2, yPos2, weight){
+        this.drawEdge = function(xPos1, yPos1, xPos2, yPos2, weight, color){
             context.beginPath();
             context.fillStyle = "white";
-            context.strokeStyle = "black";
+            context.strokeStyle = color;
             
             if(xPos1 === xPos2 && yPos1 === yPos2) {
                 var selfEdgeRadius = 30;
                 context.arc(xPos1 - selfEdgeRadius, yPos1, selfEdgeRadius, 0, 2 * Math.PI);
                 context.stroke();
-                if(weight != -1) { context.fillText(weight, xPos1 - (selfEdgeRadius + 20), yPos1); }
+                if(weight) { context.fillText(weight, xPos1 - (selfEdgeRadius + 20), yPos1); }
             } else {
                 context.moveTo(xPos1, yPos1);
                 context.lineTo(xPos2, yPos2);
                 context.stroke();
-                 if(weight != -1) { context.fillText(weight, (xPos1 + xPos2) / 2, (yPos1 + yPos2) / 2); }
+                 if(weight) { context.fillText(weight, (xPos1 + xPos2) / 2, (yPos1 + yPos2) / 2); }
             }
             
         };
         
+        // Function: clear()
+        // clears contents of canvas
         this.clear = function() {
             context.clearRect(0, 0, canvas.width, canvas.height);  
         };

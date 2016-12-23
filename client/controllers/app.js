@@ -4,6 +4,7 @@
     angular
         .module("app", [
             "ccd.graph",
-            "ccd.services"
+            "ccd.service.canvas",
+            "ccd.service.prim"
         ]);
 })();
