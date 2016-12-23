@@ -90,3 +90,7 @@
     }
     
 })();
+
+// The specific code used was inspired from
+// an implementation of Prim's algorithm found here:
+// https://gist.github.com/methodin/1577481
